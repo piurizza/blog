@@ -54,17 +54,6 @@ function lunr_search(term) {
     return false;
 }
 </script>
-<style>
-    #lunrsearchresults {padding-top: 0.2rem; color: rgb(190, 188, 188)}
-    .lunrsearchresult {padding-bottom: 1rem;}
-    .lunrsearchresult .title {color: #977111;}
-    .lunrsearchresult .term {color: rgba(255, 255, 255, 0.1);}
-    .lunrsearchresult .url {color: rgb(190, 188, 188);}
-    .lunrsearchresult a {display: block; color: rgb(190, 188, 188);}
-    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
-    .lunrsearchresult a:hover .title {text-decoration: underline;}
-</style>
-
 
 <form onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
     <p><input type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search" /></p>

@@ -338,3 +338,12 @@ input[type='checkbox'] {
     border-bottom-right-radius: 7px;
     padding: .5rem 1rem;
 }
+
+#lunrsearchresults {padding-top: 0.2rem; color: rgb(190, 188, 188)}
+.lunrsearchresult {padding-bottom: 1rem;}
+.lunrsearchresult .title {color: #977111;}
+.lunrsearchresult .term {color: rgba(255, 255, 255, 0.1);}
+.lunrsearchresult .url {color: rgb(190, 188, 188);}
+.lunrsearchresult a {display: block; color: rgb(190, 188, 188);}
+.lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+.lunrsearchresult a:hover .title {text-decoration: underline;}

@@ -1,0 +1,26 @@
+title: piurizza
+description: My Personal Blog
+author: Pietro Iurizza
+logo: /static/img/avatar.avif
+github: https://github.com/piurizza
+about: A blog about data world
+
+baseurl: ""
+url: "https://www.piurizza.com"
+
+allowsearch: true
+
+disqus_shortname: aboutashu
+
+share:
+  linkedin_username: piurizza 
+
+
+enableTags: true
+tagarray: []
+
+paginate: 20
+per_page: 20
+paginate_path: "/page:num/"
+markdown: kramdown
+gems: [jekyll-paginate, jekyll-gist, jekyll-sitemap]

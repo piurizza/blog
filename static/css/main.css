@@ -249,6 +249,8 @@ footer {
     margin-bottom: 1%;
     margin-left: 55%;
     margin-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     position: fixed;
     border-radius: 50px;
     z-index: 3;

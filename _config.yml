@@ -14,7 +14,7 @@ share:
   linkedin_username: piurizza 
 
 enableTags: true
-tagarray: []
+tagarray: [certifications, sql]
 
 paginate: 20
 per_page: 20

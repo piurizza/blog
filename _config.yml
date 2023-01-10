@@ -1,9 +1,9 @@
 title: piurizza
-description: My Personal Blog
+description: Your friendly neighbourhood data engineer
 author: Pietro Iurizza
 logo: /static/img/avatar.svg
 github: https://github.com/piurizza
-about: A blog about data world
+about: Your friendly neighbourhood data engineer
 
 baseurl: ""
 url: "https://www.piurizza.com"

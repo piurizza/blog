@@ -25,12 +25,19 @@
         <!-- Theme: apply saved preference before render to prevent flash -->
         <script>
         (function() {
-            var s = localStorage.getItem('theme');
-            if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            var saved = localStorage.getItem('theme');
+            var isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
                 document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
             }
         })();
         </script>
+        <style>
+            html:not([data-theme="dark"]) body { background-color: #ffffff !important; color: #333333 !important; }
+            html[data-theme="dark"] body { background-color: #0d1117 !important; color: #c9d1d9 !important; }
+        </style>
 
         <!-- FontAwesome icons -->
         <link rel="stylesheet" href="/css/fontawesome.css">

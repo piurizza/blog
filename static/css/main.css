@@ -429,8 +429,17 @@ input[type='checkbox'] { display: none; }
 
 [data-theme="dark"] pre, [data-theme="dark"] code {
     background-color: var(--bg-code);
-    color: var(--text-primary);
+    color: var(--text-category);
     border-color: var(--border-color);
+}
+
+[data-theme="dark"] strong, [data-theme="dark"] b {
+    color: var(--text-category);
+}
+
+[data-theme="dark"] del, [data-theme="dark"] s {
+    color: var(--text-category);
+    opacity: 0.7;
 }
 
 [data-theme="dark"] hr {

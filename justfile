@@ -1,5 +1,7 @@
+export PATH := env("HOME") + "/.cargo/bin:" + env("PATH")
+
 # Default recipe
-default: build verify
+default: build test
 
 # Build the Zola site
 build:
@@ -9,7 +11,8 @@ build:
 serve:
     zola serve
 
-# Run all verification checks
+# Run all verification checks (alias: test)
+test: verify
 verify: verify-source verify-build
 
 # Verify source files

@@ -398,6 +398,20 @@ input[type='checkbox'] { display: none; }
 .lunrsearchresult a:hover, .lunrsearchresult a:focus { text-decoration: none; }
 .lunrsearchresult a:hover .title { text-decoration: underline; }
 
+/* ===== Dark theme core overrides ===== */
+[data-theme="dark"] body {
+    background-color: #0d1117 !important;
+    color: #c9d1d9 !important;
+}
+
+[data-theme="dark"] .header-panel.shadow-z-2 {
+    background-color: #161b22 !important;
+}
+
+[data-theme="dark"] .container.main.outer {
+    background-color: #0d1117 !important;
+}
+
 /* ===== Dark theme overrides for Bootstrap components ===== */
 [data-theme="dark"] .well,
 [data-theme="dark"] .well-default,

@@ -1,6 +1,6 @@
 base_url = "https://www.piurizza.com"
-title = "piurizza"
-description = "Your friendly neighbourhood data engineer"
+title = "Pietro Iurizza"
+description = "the one who writes stuff"
 author = "Pietro Iurizza"
 compile_sass = false
 build_search_index = true
@@ -23,7 +23,7 @@ highlight_theme = "base16-ocean-dark"
 
 [extra]
 logo = "/img/avatar.svg"
-about = "Your friendly neighbourhood data engineer"
+about = "the one who writes stuff"
 github = "https://github.com/piurizza"
 
 [[extra.social]]

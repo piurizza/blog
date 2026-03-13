@@ -267,18 +267,35 @@ Examine the description of the BOOKS_TRANSACTIONS table:
 You want to display the member IDs, due date, and late fee as $2 for all transactions.
 \
 Which SQL statement must you execute?
+
 1.
-SELECT member_id AS MEMBER_ID, due_date AS DUE_DATE, $2 AS LATE_FEE FROM
-BOOKS_TRANSACTIONS
+   ```sql
+   SELECT member_id AS MEMBER_ID,
+          due_date AS DUE_DATE,
+          $2 AS LATE_FEE
+   FROM BOOKS_TRANSACTIONS
+   ```
 2.
-SELECT member_id AS "MEMBER ID", due_date AS "DUE DATE", $2 AS "LATE FEE"
-FROM BOOKS_TRANSACTIONS
+   ```sql
+   SELECT member_id AS "MEMBER ID",
+          due_date AS "DUE DATE", 
+          $2 AS "LATE FEE"
+   FROM BOOKS_TRANSACTIONS
+   ```
 3.
-SELECT member_id AS "MEMBER ID", due_date AS "DUE DATE", '$2' AS "LATE FEE"
-FROM BOOKS_TRANSACTIONS
+   ```sql
+   SELECT member_id AS "MEMBER ID",
+          due_date AS "DUE DATE",
+          '$2' AS "LATE FEE"
+   FROM BOOKS_TRANSACTIONS
+   ```
 4.
-SELECT member_id 'MEMBER ID', due_date 'DUE DATE', '$2 AS LATE FEE'
-FROM BOOKS_TRANSACTIONS;
+   ```sql
+   SELECT member_id 'MEMBER ID',
+          due_date 'DUE DATE',
+          '$2 AS LATE FEE'
+   FROM BOOKS_TRANSACTIONS;
+   ```
 
 <details>
 <summary>Click here to check the answer</summary>
@@ -291,20 +308,27 @@ Answer: 3
 
 \
 Which queries execute successfully?
+
 1.
-SELECT q'! Pietro's blog !' || 'is awesome' FROM dual;
+   ```sql
+   SELECT q'! Pietro's blog !' || 'is awesome' FROM dual;
+   ```
 2.
-SELECT "{ Pietro's blog }" || 'is awesome'
-FROM dual;
+   ```sql
+   SELECT "{ Pietro's blog }" || 'is awesome' FROM dual;
+   ```
 3.
-SELECT q'[ Pietro's blog ]' || is awesome
-FROM dual;
+   ```sql
+   SELECT q'[ Pietro's blog ]' || is awesome FROM dual;
+   ```
 4.
-SELECT q'* Pietro's blog *' || ''
-FROM dual;
+   ```sql
+   SELECT q'* Pietro's blog *' || '' FROM dual;
+   ```
 5.
-SELECT p'{ Pietro's blog }' || 'is awesome'
-FROM dual;
+   ```sql
+   SELECT p'{ Pietro's blog }' || 'is awesome' FROM dual;
+   ```
 
 <details>
 <summary>Click here to check the answer</summary>

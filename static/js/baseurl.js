@@ -1,1 +1,0 @@
-window.baseurl = '{{ site.url }}'

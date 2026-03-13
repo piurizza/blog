@@ -1,9 +1,9 @@
----
-layout: post
-title:  "Oracle SQL Database Certification Guide pt. 2"
-date:   2023-01-10 00:00:00
-categories: certifications sql
----
++++
+title = "Oracle SQL Database Certification Guide pt. 2"
+date = 2023-01-10
+[taxonomies]
+categories = ["certifications", "sql"]
++++
 
 <div class="wrap-collabsible">
   <input id="collapsible" class="toggle" type="checkbox">
@@ -55,7 +55,7 @@ categories: certifications sql
 </div>
 
 ## <a id="1"></a> Introduction
-In [the first part](https://www.piurizza.com/certifications/sql/2023/01/01/oracle-sql-database-certification-guide-1.html) we took a look at how the examination will be structured and we introduced the first exam topic talking about "Relational Database concepts".
+In [the first part](@/blog/oracle-sql-database-certification-guide-1.md) we took a look at how the examination will be structured and we introduced the first exam topic talking about "Relational Database concepts".
 \
 The second topic is about retrieving data with one of the most popular SQL statements: **`SELECT`**.
 
@@ -267,17 +267,17 @@ Examine the description of the BOOKS_TRANSACTIONS table:
 You want to display the member IDs, due date, and late fee as $2 for all transactions.
 \
 Which SQL statement must you execute?
-1. 
+1.
 SELECT member_id AS MEMBER_ID, due_date AS DUE_DATE, $2 AS LATE_FEE FROM
 BOOKS_TRANSACTIONS
-2. 
+2.
 SELECT member_id AS "MEMBER ID", due_date AS "DUE DATE", $2 AS "LATE FEE"
 FROM BOOKS_TRANSACTIONS
-3. 
+3.
 SELECT member_id AS "MEMBER ID", due_date AS "DUE DATE", '$2' AS "LATE FEE"
 FROM BOOKS_TRANSACTIONS
-4. 
-SELECT member_id 'MEMBER ID', due_date 'DUE DATE', '$2 AS LATE FEE' 
+4.
+SELECT member_id 'MEMBER ID', due_date 'DUE DATE', '$2 AS LATE FEE'
 FROM BOOKS_TRANSACTIONS;
 
 <details>
@@ -291,18 +291,18 @@ Answer: 3
 
 \
 Which queries execute successfully?
-1. 
+1.
 SELECT q'! Pietro's blog !' || 'is awesome' FROM dual;
-2. 
+2.
 SELECT "{ Pietro's blog }" || 'is awesome'
 FROM dual;
-3. 
+3.
 SELECT q'[ Pietro's blog ]' || is awesome
 FROM dual;
-4. 
+4.
 SELECT q'* Pietro's blog *' || ''
 FROM dual;
-5. 
+5.
 SELECT p'{ Pietro's blog }' || 'is awesome'
 FROM dual;
 

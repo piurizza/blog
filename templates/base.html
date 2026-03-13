@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/img/favicon.svg" />
+        <title>{% block title %}{{ page.title | default(value=config.title) }}{% endblock title %} - {{ config.title }}</title>
+        <meta name="author" content="{{ config.author }}" />
+        <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}" />
+
+        <meta content="{{ config.title }}" property="og:site_name">
+        {% block og %}
+        <meta content="{{ config.title }}" property="og:title">
+        <meta content="website" property="og:type">
+        <meta content="{{ config.description }}" property="og:description">
+        {% endblock og %}
+
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="/css/fontawesome.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body class="home overflow-hidden">
+    <div class="header-panel shadow-z-2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="row-picture">
+               <a href="{{ config.base_url }}"><img id="about" class="logo-img" src="{{ config.extra.logo }}" alt="logo with a link to {{ config.base_url }}"></a>
+            </div>
+            <div class="row-details">
+              <h1 class="list-group-item-heading">piurizza.com</h1>
+              <p class="list-group-item-text">{{ config.extra.about }}</p>
+              <div class="social-icons">
+                {% for link in config.extra.social %}
+                  <a title="{{ link.link }}" class="icon" target="_blank" href="{{ link.link }}"><i class="fa {{ link.icon }}"></i></a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="navbar-header pull-right">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-2x fa-bars"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-9 col-sm-8 col-xs-12">
+          <div class="row">
+            <h2 class="blog-title-pro {% if config.extra.search is defined %}col-md-6 col-sm-12 col-xs-12{% endif %}">{% block page_title %}{% endblock page_title %}</h2>
+            <div class="col-md-6 col-sm-12 col-xs-12 searchcontrol" id="js-search">
+              {% block search %}{% endblock search %}
+            </div>
+          </div>
+            <p class="info">
+              {% block page_info %}{% endblock page_info %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container main outer">
+      <div class="row">
+        <div class="col-md-3 col-xs-12">
+          <nav class="menu">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="list-separator nav navbar-nav well well-primary {% block nav_layout %}{% endblock nav_layout %}">
+                {% set current_path = current_path | default(value="/") %}
+                {% for item in config.extra.nav %}
+                  {% set linkurl = item.url %}
+                  {% set target = item.target | default(value="_self") %}
+                  {% set menuurl = item.url | trim_start_matches(pat="/") %}
+                  {% set is_current = false %}
+                  {% if item.layout is defined and page is defined and page.extra.layout is defined and page.extra.layout == item.layout %}
+                    {% set is_current = true %}
+                  {% elif current_path == item.url %}
+                    {% set is_current = true %}
+                  {% endif %}
+                  <li class="col-lg-12 col-md-12 col-xs-12 {% if is_current %}current-menu-item{% endif %}"><a href="{{ linkurl }}" target="{{ target }}" hreflang="en"><i class="fa {{ item.icon }}"></i> {{ item.text }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="col-md-9 col-xs-12 full">
+          {% block content %}{% endblock content %}
+          <div class="row">
+            <div class="col-md-12 col-xs-12 footer">
+              <footer>
+                &copy; {{ now() | date(format="%Y") }} piurizza.com
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/material.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

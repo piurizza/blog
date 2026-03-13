@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block page_title %}Blog{% endblock page_title %}
+
+{% block search %}
+<script src="/elasticlunr.min.js"></script>
+<script src="/js/search.js"></script>
+<form id="lunrsearchform">
+    <p><input type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search" /></p>
+</form>
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+{% endblock search %}
+
+{% block nav_layout %}post{% endblock nav_layout %}
+
+{% block content %}
+<div class="well">
+    <div class="list-group">
+      {% set blog = get_section(path="blog/_index.md") %}
+      {% for page in blog.pages %}
+      <div class="list-group-item">
+        <div class="row-content">
+          <div class="least-content">{{ page.date | date(format="%d %b %Y") }}</div>
+          <h4 class="list-group-item-heading"><a href="{{ page.permalink }}">{{ page.title }}</a></h4>
+          <p class="list-group-item-text">
+            {% if page.taxonomies.categories is defined %}
+              {{ macros::category_links(categories=page.taxonomies.categories, prefix="#") }}
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      {% endfor %}
+    </div>
+
+    {% if paginator is defined and paginator.number_pagers > 1 %}
+    <ul class="pager">
+      {% if paginator.previous %}
+        <li class="previous">
+          <a href="{{ paginator.previous }}" rel="prev" hreflang="en">&laquo;</a>
+        </li>
+      {% else %}
+        <li class="previous disabled"><span aria-hidden="true">&laquo;</span></li>
+      {% endif %}
+
+      <li><a href="/">First</a></li>
+
+      {% for pager in range(end=paginator.number_pagers) %}
+        {% set page_num = pager + 1 %}
+        {% if page_num == paginator.current_index %}
+          <li class="active">
+             <a>{{ page_num }}<span class="sr-only">(current)</span></a>
+          </li>
+        {% elif page_num == 1 %}
+          <li><a href="/">{{ page_num }}</a></li>
+        {% else %}
+          <li>
+            <a href="/page/{{ page_num }}/">{{ page_num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      <li><a href="/page/{{ paginator.number_pagers }}/">Last</a></li>
+
+      {% if paginator.next %}
+        <li class="next">
+          <a href="{{ paginator.next }}" rel="next" hreflang="en">&raquo;</a>
+        </li>
+      {% else %}
+        <li class="next disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock content %}

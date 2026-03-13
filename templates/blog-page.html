@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=page.title) }}{% endblock description %}
+
+{% block og %}
+<meta content="{{ page.title }}" property="og:title">
+<meta content="article" property="og:type">
+<meta content="{{ page.description | default(value=config.description) }}" property="og:description">
+<meta content="{{ page.permalink }}" property="og:url">
+{% if page.date %}
+<meta content="{{ page.date | date(format="%+") }}" property="article:published_time">
+<meta content="{{ config.base_url }}/about/" property="article:author">
+{% endif %}
+{% if page.extra.image is defined %}
+<meta content="{{ config.base_url }}/img/posts/{{ page.extra.image }}" property="og:image">
+{% else %}
+<meta content="{{ config.base_url }}/img/avatar.svg" property="og:image">
+{% endif %}
+{% if page.taxonomies.categories is defined %}
+<meta content="{{ page.taxonomies.categories | first }}" property="article:section">
+{% endif %}
+{% endblock og %}
+
+{% block page_title %}{{ page.title }}{% endblock page_title %}
+
+{% block nav_layout %}post{% endblock nav_layout %}
+
+{% block page_info %}
+{% if page.date %}
+  <span class="time">{{ page.date | date(format="%d %b %Y") }}</span>
+{% endif %}
+{% if page.taxonomies.categories is defined %}
+  <span class="categories">
+    &raquo;
+    {{ macros::category_links(categories=page.taxonomies.categories, separator=", ") }}
+  </span>
+{% endif %}
+{% endblock page_info %}
+
+{% block content %}
+<div class="post-content well">
+<article class="content">
+    <div class="post">
+        <button hidden onclick="Scrollback_topfunc()" id="backbtn" class="fa fa-arrow-up" title="Back to top"></button>
+        {{ page.content | safe }}
+    </div>
+    <hr />
+    <div class="share-page">
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=www.piurizza.com{{ page.path }}" hreflang="en" class="linkedin-share-button">Share this on <i class="fa fa-linkedin-square"></i></a>
+    </div>
+</article>
+<hr />
+
+{# Related posts: find posts sharing at least one category #}
+{% if page.taxonomies.categories is defined %}
+  {% set_global related = [] %}
+  {% set blog = get_section(path="blog/_index.md") %}
+  {% for post in blog.pages %}
+    {% if post.permalink != page.permalink and related | length < 6 and post.taxonomies.categories is defined %}
+      {% set_global match = false %}
+      {% for cat in post.taxonomies.categories %}
+        {% if not match and cat in page.taxonomies.categories %}
+          {% set_global match = true %}
+        {% endif %}
+      {% endfor %}
+      {% if match %}
+        {% set_global related = related | concat(with=post) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if related | length > 0 %}
+  <div class="panel-body">
+    <h5>Related Posts</h5>
+    <ul>
+      {% for post in related %}
+      <li class="relatedPost">
+        <a href="{{ post.permalink }}" hreflang="en">{{ post.title }}</a>
+        {% if post.taxonomies.categories is defined %}
+          <small>(Categories: {{ macros::category_links(categories=post.taxonomies.categories, separator=", ") }})</small>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{% endif %}
+
+<div class="PageNavigation">
+  {% if page.earlier %}
+    <a class="prev pull-left" href="{{ page.earlier.permalink }}" hreflang="en" rel="prev">&laquo; {{ page.earlier.title }}</a>
+  {% endif %}
+  {% if page.later %}
+    <a class="next pull-right" href="{{ page.later.permalink }}" hreflang="en" rel="next">{{ page.later.title }} &raquo;</a>
+  {% endif %}
+</div>
+</div>
+{% endblock content %}

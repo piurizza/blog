@@ -1,9 +1,9 @@
----
-layout: post
-title:  "Oracle SQL Database Certification Guide pt. 1"
-date:   2023-01-01 00:00:00
-categories: certifications sql
----
++++
+title = "Oracle SQL Database Certification Guide pt. 1"
+date = 2023-01-01
+[taxonomies]
+categories = ["certifications", "sql"]
++++
 
 <div class="wrap-collabsible">
   <input id="collapsible" class="toggle" type="checkbox">

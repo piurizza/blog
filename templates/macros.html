@@ -1,0 +1,5 @@
+{% macro category_links(categories, prefix="", separator=" ") %}
+  {% for category in categories %}
+    <a href="/categories/{{ category }}" hreflang="en">{{ prefix }}{{ category }}</a>{% if separator == ", " and not loop.last %}{{ separator }}{% endif %}
+  {% endfor %}
+{% endmacro %}

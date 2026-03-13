@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block page_title %}{{ term.name | title }}{% endblock page_title %}
+
+{% block content %}
+<div class="content well">
+<header id="post-header">
+    <h1 id="post-subtitle">Articles by category: <em class="text-muted">{{ term.name }}</em></h1>
+</header>
+
+<div id="post-content">
+    <hr />
+    {% set taxonomy = get_taxonomy(kind="categories") %}
+    {% for t in taxonomy.items %}
+      {% if t.name == term.name %}
+        <button class="btn btn-sm btn-primary btn-raised">{{ t.name }}</button>
+      {% else %}
+        <a href="{{ t.permalink }}" hreflang="en" class="btn btn-sm btn-default btn-raised">{{ t.name }}</a>
+      {% endif %}
+    {% endfor %}
+    <hr />
+
+    {% if term.pages | length > 0 %}
+    <div class="list-group">
+        {% set prev_year = "" %}
+        {% for page in term.pages %}
+        <div class="list-group-item">
+            <div class="row-content">
+            {% set post_year = page.date | date(format="%Y") %}
+            {% if loop.first or post_year != prev_year %}
+                <div class="least-content">{{ post_year }}</div>
+            {% endif %}
+            {% set_global prev_year = post_year %}
+            <div class="least-content">{{ page.date | date(format="%d %b %Y") }}</div>
+            <h3 class="list-group-item-heading"><a href="{{ page.permalink }}" hreflang="en">{{ page.title }}</a></h3>
+            <p class="list-group-item-text">
+              {% if page.taxonomies.categories is defined %}
+                {{ macros::category_links(categories=page.taxonomies.categories, prefix="#") }}
+              {% endif %}
+            </p>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>There are no posts in this category.</p>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

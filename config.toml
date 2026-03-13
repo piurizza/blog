@@ -1,0 +1,52 @@
+base_url = "https://www.piurizza.com"
+title = "piurizza"
+description = "Your friendly neighbourhood data engineer"
+author = "Pietro Iurizza"
+compile_sass = false
+build_search_index = true
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+taxonomies = [
+    { name = "categories", paginate_by = 20, feed = true },
+]
+
+[search]
+include_title = true
+include_description = false
+include_path = false
+include_content = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+
+[extra]
+logo = "/img/avatar.svg"
+about = "Your friendly neighbourhood data engineer"
+github = "https://github.com/piurizza"
+
+[[extra.social]]
+icon = "fa-linkedin"
+link = "https://www.linkedin.com/in/piurizza/"
+
+[[extra.social]]
+icon = "fa-github"
+link = "https://github.com/piurizza"
+
+[[extra.nav]]
+text = "Blog"
+url = "/"
+icon = "fa-pencil"
+layout = "post"
+
+[[extra.nav]]
+text = "About"
+url = "/about/"
+icon = "fa-comments"
+
+[[extra.nav]]
+text = "RSS"
+url = "/atom.xml"
+icon = "fa-feed"
+target = "_blank"

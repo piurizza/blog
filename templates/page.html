@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=config.description) }}{% endblock description %}
+
+{% block og %}
+<meta content="{{ page.title }}" property="og:title">
+<meta content="website" property="og:type">
+<meta content="{{ page.description | default(value=config.description) }}" property="og:description">
+<meta content="{{ page.permalink }}" property="og:url">
+<meta content="{{ config.base_url }}/img/avatar.svg" property="og:image">
+{% endblock og %}
+
+{% block page_title %}{{ page.title }}{% endblock page_title %}
+
+{% block content %}
+<div class="well">
+    {% if page.extra.subtitle is defined %}
+    <h4 class="home-subtitle">{{ page.extra.subtitle }}</h4>
+    {% endif %}
+    <div>
+    	{{ page.content | safe }}
+    </div>
+</div>
+{% endblock content %}

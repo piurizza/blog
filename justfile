@@ -114,6 +114,13 @@ verify-build:
     check "$(test -f public/js/search.js && echo true || echo false)" \
         "search.js in build output"
 
+    # No jQuery/Bootstrap in build
+    check "$(test ! -f public/js/jquery.min.js && echo true || echo false)" \
+        "No jQuery in build output"
+
+    check "$(test ! -f public/css/bootstrap.min.css && echo true || echo false)" \
+        "No Bootstrap CSS in build output"
+
     report
 
 # Clean build artifacts

@@ -14,9 +14,9 @@
     {% set taxonomy = get_taxonomy(kind="categories") %}
     {% for t in taxonomy.items %}
       {% if t.name == term.name %}
-        <button class="btn btn-sm btn-primary btn-raised">{{ t.name }}</button>
+        <span class="btn btn-active">{{ t.name }}</span>
       {% else %}
-        <a href="{{ t.permalink }}" hreflang="en" class="btn btn-sm btn-default btn-raised">{{ t.name }}</a>
+        <a href="{{ t.permalink }}" hreflang="en" class="btn">{{ t.name }}</a>
       {% endif %}
     {% endfor %}
     <hr />

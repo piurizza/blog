@@ -43,7 +43,7 @@
 <div class="post-content well">
 <article class="content">
     <div class="post">
-        <button hidden onclick="Scrollback_topfunc()" id="backbtn" class="fa fa-arrow-up" title="Back to top"></button>
+        <button hidden id="backbtn" class="fa fa-arrow-up" title="Back to top"></button>
         {{ page.content | safe }}
     </div>
     <hr />
@@ -72,7 +72,7 @@
   {% endfor %}
 
   {% if related | length > 0 %}
-  <div class="panel-body">
+  <div class="related-posts">
     <h5>Related Posts</h5>
     <ul>
       {% for post in related %}
@@ -88,12 +88,12 @@
   {% endif %}
 {% endif %}
 
-<div class="PageNavigation">
+<div class="page-navigation">
   {% if page.earlier %}
-    <a class="prev pull-left" href="{{ page.earlier.permalink }}" hreflang="en" rel="prev">&laquo; {{ page.earlier.title }}</a>
+    <a class="prev" href="{{ page.earlier.permalink }}" hreflang="en" rel="prev">&laquo; {{ page.earlier.title }}</a>
   {% endif %}
   {% if page.later %}
-    <a class="next pull-right" href="{{ page.later.permalink }}" hreflang="en" rel="next">{{ page.later.title }} &raquo;</a>
+    <a class="next" href="{{ page.later.permalink }}" hreflang="en" rel="next">{{ page.later.title }} &raquo;</a>
   {% endif %}
 </div>
 </div>

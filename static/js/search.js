@@ -81,9 +81,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('lunrsearchform');
     if (form) {
         initSearch();
+        var input = document.getElementById('lunrsearch');
+        var debounceTimer;
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            doSearch(document.getElementById('lunrsearch').value);
+            clearTimeout(debounceTimer);
+            doSearch(input.value);
+        });
+
+        input.addEventListener('input', function () {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function () {
+                doSearch(input.value);
+            }, 300);
         });
     }
 });

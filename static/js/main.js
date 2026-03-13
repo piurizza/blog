@@ -1,3 +1,4 @@
+// Back to top button
 var back_top_button = document.getElementById("backbtn");
 
 if (back_top_button) {
@@ -11,6 +12,32 @@ if (back_top_button) {
 }
 
 function Scrollback_topfunc() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Theme toggle
+(function() {
+    var toggle = document.getElementById('theme-toggle');
+    var icon = document.getElementById('theme-icon');
+    if (!toggle || !icon) return;
+
+    function updateIcon() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
+        toggle.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+    }
+
+    updateIcon();
+
+    toggle.addEventListener('click', function() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+        updateIcon();
+    });
+})();

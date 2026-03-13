@@ -48,7 +48,7 @@
     </div>
     <hr />
     <div class="share-page">
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=www.piurizza.com{{ page.path }}" hreflang="en" class="linkedin-share-button">Share this on <i class="fa fa-linkedin-square"></i></a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ config.base_url | trim_end_matches(pat='/') }}{{ page.path }}" hreflang="en" class="linkedin-share-button">Share this on <i class="fa fa-linkedin-square"></i></a>
     </div>
 </article>
 <hr />

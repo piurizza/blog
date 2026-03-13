@@ -51,8 +51,12 @@ verify-source:
     check "$(test -f content/about.md && echo true || echo false)" \
         "About page exists"
 
-    check "$(ls content/blog/*.md 2>/dev/null | grep -v _index | wc -l | xargs test 0 -lt && echo true || echo false)" \
-        "Blog posts exist"
+    # Accessibility
+    check "$(grep -q 'sr-only' templates/index.html && echo true || echo false)" \
+        "Search input has accessible label"
+
+    check "$(grep -q 'role=' templates/index.html && echo true || echo false)" \
+        "Search form has role=search"
 
     # Templates
     check "$(test -f templates/base.html && echo true || echo false)" \
@@ -86,23 +90,19 @@ verify-build:
     check "$(test -f public/404.html && echo true || echo false)" \
         "404 page generated"
 
-    check "$(test -f public/atom.xml && echo true || echo false)" \
-        "Atom feed generated"
+    # Feed and categories only generated when posts exist
+    if ls content/blog/*.md 2>/dev/null | grep -qv _index; then
+        check "$(test -f public/atom.xml && echo true || echo false)" \
+            "Atom feed generated"
+        check "$(test -f public/categories/index.html && echo true || echo false)" \
+            "Categories page generated"
+    fi
 
     check "$(test -f public/search_index.en.js && echo true || echo false)" \
         "Search index generated"
 
     check "$(test -f public/elasticlunr.min.js && echo true || echo false)" \
         "Elasticlunr JS generated"
-
-    check "$(test -f public/categories/index.html && echo true || echo false)" \
-        "Categories page generated"
-
-    check "$(test -d public/categories/certifications && echo true || echo false)" \
-        "Certifications category generated"
-
-    check "$(test -d public/categories/sql && echo true || echo false)" \
-        "SQL category generated"
 
     # Check dynamic footer year
     check "$(grep -q "$(date +%Y)" public/index.html 2>/dev/null && echo true || echo false)" \

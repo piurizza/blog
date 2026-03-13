@@ -6,8 +6,11 @@
 {% block search %}
 <script src="/elasticlunr.min.js"></script>
 <script src="/js/search.js"></script>
-<form id="lunrsearchform">
-    <p><input type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search" /></p>
+<form id="lunrsearchform" role="search">
+    <p>
+      <label for="lunrsearch" class="sr-only">Search posts</label>
+      <input type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search" autocomplete="off" />
+    </p>
 </form>
 <div id="lunrsearchresults">
     <ul></ul>
@@ -25,6 +28,9 @@
         <div class="row-content">
           <div class="least-content">{{ page.date | date(format="%d %b %Y") }}</div>
           <h4 class="list-group-item-heading"><a href="{{ page.permalink }}">{{ page.title }}</a></h4>
+          {% if page.description %}
+            <p class="list-group-item-summary">{{ page.description }}</p>
+          {% endif %}
           <p class="list-group-item-text">
             {% if page.taxonomies.categories is defined %}
               {{ macros::category_links(categories=page.taxonomies.categories, prefix="#") }}

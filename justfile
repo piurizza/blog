@@ -55,10 +55,10 @@ verify-source:
         "About page exists"
 
     # Accessibility
-    check "$(grep -q 'sr-only' templates/index.html && echo true || echo false)" \
+    check "$(grep -q 'sr-only' templates/base.html && echo true || echo false)" \
         "Search input has accessible label"
 
-    check "$(grep -q 'role=' templates/index.html && echo true || echo false)" \
+    check "$(grep -q 'role=' templates/base.html && echo true || echo false)" \
         "Search form has role=search"
 
     # Templates

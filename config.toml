@@ -34,11 +34,9 @@ link = "https://www.linkedin.com/in/piurizza/"
 icon = "fa-github"
 link = "https://github.com/piurizza"
 
-[[extra.nav]]
-text = "Blog"
-url = "/"
-icon = "fa-pencil"
-layout = "post"
+[[extra.social]]
+icon = "fa-rss"
+link = "https://www.piurizza.com/atom.xml"
 
 [[extra.nav]]
 text = "About"
@@ -46,7 +44,12 @@ url = "/about/"
 icon = "fa-comments"
 
 [[extra.nav]]
-text = "RSS"
-url = "/atom.xml"
-icon = "fa-feed"
-target = "_blank"
+text = "Blog"
+url = "/"
+icon = "fa-pencil"
+layout = "post"
+
+[[extra.nav]]
+text = "Projects"
+url = "/projects/"
+icon = "fa-briefcase"

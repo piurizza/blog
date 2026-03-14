@@ -18,6 +18,15 @@
     {% if page.extra.subtitle is defined %}
     <h4 class="home-subtitle">{{ page.extra.subtitle }}</h4>
     {% endif %}
+    {% if page.title == "About" %}
+    <div class="about-hero">
+        <img class="about-avatar" src="{{ config.extra.logo }}" alt="Portrait of {{ config.author }}">
+        <div class="about-text">
+            <h1 class="about-title">I am Pietro</h1>
+            <p class="about-subtitle">{{ config.extra.about }}</p>
+        </div>
+    </div>
+    {% endif %}
     <div>
     	{{ page.content | safe }}
     </div>

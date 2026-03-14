@@ -29,10 +29,12 @@
             <div class="row-content">
             {% set post_year = page.date | date(format="%Y") %}
             {% if loop.first or post_year != prev_year %}
-                <div class="least-content">{{ post_year }}</div>
+                <div class="list-year">{{ post_year }}</div>
             {% endif %}
             {% set_global prev_year = post_year %}
-            <div class="least-content">{{ page.date | date(format="%d %b %Y") }}</div>
+            <div class="least-content">
+                {{ page.date | date(format="%d %b %Y") }}{% if page.reading_time %} · {{ page.reading_time }} min read{% endif %}
+            </div>
             <h3 class="list-group-item-heading"><a href="{{ page.permalink }}" hreflang="en">{{ page.title }}</a></h3>
             <p class="list-group-item-text">
               {% if page.taxonomies.categories is defined %}

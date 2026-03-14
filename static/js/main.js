@@ -8,6 +8,7 @@
         var expanded = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', !expanded);
         menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden', expanded ? 'true' : 'false');
     });
 })();
 
@@ -38,6 +39,7 @@
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
         toggle.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+        toggle.setAttribute('aria-pressed', isDark);
     }
 
     updateIcon();

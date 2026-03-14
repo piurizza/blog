@@ -27,23 +27,25 @@
 
 {% block nav_layout %}post{% endblock nav_layout %}
 
-{% block page_info %}
-{% if page.date %}
-  <span class="time">{{ page.date | date(format="%d %b %Y") }}</span>
-{% endif %}
-{% if page.taxonomies.categories is defined %}
-  <span class="categories">
-    &raquo;
-    {{ macros::category_links(categories=page.taxonomies.categories, separator=", ") }}
-  </span>
-{% endif %}
-{% endblock page_info %}
+{% block page_info %}{% endblock page_info %}
 
 {% block content %}
 <div class="post-content well">
 <article class="content">
     <div class="post">
         <button hidden id="backbtn" class="fa fa-arrow-up" title="Back to top"></button>
+        <h1 class="post-title">{{ page.title }}</h1>
+        <div class="post-meta">
+          {% if page.date %}
+            <span class="post-date">{{ page.date | date(format="%d %b %Y") }}</span>
+          {% endif %}
+          {% if page.reading_time %}
+            <span class="post-readtime">{{ page.reading_time }} min read</span>
+          {% endif %}
+          {% if page.taxonomies.categories is defined %}
+            <span class="post-cats">{{ macros::category_links(categories=page.taxonomies.categories, separator=", ") }}</span>
+          {% endif %}
+        </div>
         {{ page.content | safe }}
     </div>
     <hr />

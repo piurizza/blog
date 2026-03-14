@@ -21,6 +21,12 @@
     Permissions-Policy = "geolocation=(), microphone=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 
+[context.deploy-preview]
+  [[context.deploy-preview.headers]]
+    for = "/*"
+    [context.deploy-preview.headers.values]
+      Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com/; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com/; frame-src https://app.netlify.com;"
+
 [[headers]]
   for = "/css/*"
   [headers.values]

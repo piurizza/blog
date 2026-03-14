@@ -25,6 +25,7 @@ highlight_theme = "base16-ocean-dark"
 logo = "/img/avatar.svg"
 about = "the one who writes stuff"
 github = "https://github.com/piurizza"
+cache_bust = "2026-03-14-1"
 
 [[extra.social]]
 icon = "fa-linkedin"

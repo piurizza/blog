@@ -6,13 +6,22 @@ function escapeHtml(text) {
 
 function doSearch(term) {
     var resultsEl = document.getElementById('lunrsearchresults');
+    var input = document.getElementById('lunrsearch');
     var ul = document.createElement('ul');
     resultsEl.innerHTML = '';
+    resultsEl.classList.remove('is-open');
     if (!term || !window.searchIndex) {
         resultsEl.appendChild(ul);
+        if (input) {
+            input.setAttribute('aria-expanded', 'false');
+        }
         return false;
     }
 
+    resultsEl.classList.add('is-open');
+    if (input) {
+        input.setAttribute('aria-expanded', 'true');
+    }
     var header = document.createElement('p');
     header.textContent = "Search results for '" + term + "'";
     resultsEl.appendChild(header);

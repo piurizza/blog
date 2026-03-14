@@ -55,10 +55,10 @@ verify-source:
         "About page exists"
 
     # Accessibility
-    check "$(grep -q 'sr-only' templates/index.html && echo true || echo false)" \
+    check "$(grep -q 'sr-only' templates/base.html && echo true || echo false)" \
         "Search input has accessible label"
 
-    check "$(grep -q 'role=' templates/index.html && echo true || echo false)" \
+    check "$(grep -q 'role=' templates/base.html && echo true || echo false)" \
         "Search form has role=search"
 
     # Templates
@@ -113,6 +113,13 @@ verify-build:
 
     check "$(test -f public/js/search.js && echo true || echo false)" \
         "search.js in build output"
+
+    # No jQuery/Bootstrap in build
+    check "$(test ! -f public/js/jquery.min.js && echo true || echo false)" \
+        "No jQuery in build output"
+
+    check "$(test ! -f public/css/bootstrap.min.css && echo true || echo false)" \
+        "No Bootstrap CSS in build output"
 
     report
 

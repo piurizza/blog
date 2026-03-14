@@ -19,20 +19,14 @@
 
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
 
-        <!-- Custom Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" type="text/css">
+        <!-- Custom Fonts: body + headings + mono for code -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" type="text/css">
 
         <!-- Theme: apply saved preference before render to prevent flash -->
         <script src="/js/theme-init.js"></script>
 
         <!-- FontAwesome icons -->
         <link rel="stylesheet" href="/css/fontawesome.css">
-
-        <!-- Core BootStrap CSS -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-        <!-- Material Design CSS -->
-        <link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
 
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/css/syntax.css">
@@ -41,87 +35,81 @@
         <link rel="stylesheet" href="/css/main.css">
   </head>
 
-  <body class="home overflow-hidden">
-    <div class="header-panel shadow-z-2">
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="header-panel">
       <div class="container">
-        <div class="row">
-          <div class="col-md-3 col-sm-4 col-xs-12">
-            <div class="row-picture">
-               <a href="{{ config.base_url }}"><img id="about" class="logo-img" src="{{ config.extra.logo }}" alt="logo with a link to {{ config.base_url }}"></a>
+        <div class="header-grid">
+          <div class="header-left">
+            <div class="header-brand">
+              <img class="header-avatar" src="{{ config.extra.logo }}" alt="Portrait of {{ config.author }}">
+              <span class="header-name">PIETRO'S BLOG</span>
             </div>
-            <div class="row-details">
-              <h1 class="list-group-item-heading">I am Pietro</h1>
-              <p class="list-group-item-text">{{ config.extra.about }}</p>
-              <div class="social-icons">
-                {% for link in config.extra.social %}
-                  <a title="{{ link.icon | replace(from='fa-', to='') | title }}" class="icon" target="_blank" rel="noopener" href="{{ link.link }}"><i class="fa {{ link.icon }}"></i></a>
-                {% endfor %}
-                <button id="theme-toggle" class="icon" title="Toggle theme" aria-label="Toggle dark/light theme">
-                  <i class="fa fa-moon-o" id="theme-icon"></i>
-                </button>
+          </div>
+          <div class="main-header">
+            <div class="title-row">
+              <div class="searchcontrol" id="js-search">
+                <form id="lunrsearchform" role="search">
+                    <label for="lunrsearch" class="sr-only">Search posts</label>
+                    <input type="text" class="search-input" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search" autocomplete="off" aria-controls="lunrsearchresults" aria-expanded="false" />
+                </form>
+                <div id="lunrsearchresults" role="status" aria-live="polite" aria-atomic="true">
+                    <ul></ul>
+                </div>
               </div>
             </div>
-            <div class="navbar-header pull-right">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <i class="fa fa-2x fa-bars"></i>
-              </button>
-            </div>
-          </div>
-          <div class="col-md-9 col-sm-8 col-xs-12">
-          <div class="row">
-            <h2 class="blog-title-pro {% if config.extra.search is defined %}col-md-6 col-sm-12 col-xs-12{% endif %}">{% block page_title %}{% endblock page_title %}</h2>
-            <div class="col-md-6 col-sm-12 col-xs-12 searchcontrol" id="js-search">
-              {% block search %}{% endblock search %}
-            </div>
-          </div>
             <p class="info">
               {% block page_info %}{% endblock page_info %}
             </p>
           </div>
+          <div class="header-right">
+            <div class="social-icons" aria-label="Social links">
+              {% for link in config.extra.social %}
+                <a title="{{ link.icon | replace(from='fa-', to='') | title }}" aria-label="{{ link.icon | replace(from='fa-', to='') | title }}" class="icon" target="_blank" rel="noopener" href="{{ link.link }}"><i class="fa {{ link.icon }}"></i></a>
+              {% endfor %}
+              <button id="theme-toggle" class="icon" title="Toggle theme" aria-label="Toggle dark/light theme" aria-pressed="false">
+                <i class="fa fa-moon-o" id="theme-icon"></i>
+              </button>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+          </div>
+        </div>
+        <div class="subheader-nav">
+          <nav class="menu" id="nav-menu" aria-label="Primary">
+            <ul class="nav-list {% block nav_layout %}{% endblock nav_layout %}">
+              {% set current_path = current_path | default(value="/") %}
+              {% for item in config.extra.nav %}
+                {% set linkurl = item.url %}
+                {% set target = item.target | default(value="_self") %}
+                {% set is_current = false %}
+                {% if item.layout is defined and page is defined and page.extra.layout is defined and page.extra.layout == item.layout %}
+                  {% set is_current = true %}
+                {% elif current_path == "/" and item.url == "/" %}
+                  {% set is_current = true %}
+                {% elif current_path == item.url and current_path != "/" %}
+                  {% set is_current = true %}
+                {% endif %}
+                <li {% if is_current %}class="current-menu-item"{% endif %}><a href="{{ linkurl }}" target="{{ target }}" hreflang="en" {% if is_current %}aria-current="page"{% endif %}><i class="fa {{ item.icon }}"></i> {{ item.text }}</a></li>
+              {% endfor %}
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
 
     <div class="container main outer">
-      <div class="row">
-        <div class="col-md-3 col-xs-12">
-          <nav class="menu">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="list-separator nav navbar-nav well well-primary {% block nav_layout %}{% endblock nav_layout %}">
-                {% set current_path = current_path | default(value="/") %}
-                {% for item in config.extra.nav %}
-                  {% set linkurl = item.url %}
-                  {% set target = item.target | default(value="_self") %}
-                  {% set menuurl = item.url | trim_start_matches(pat="/") %}
-                  {% set is_current = false %}
-                  {% if item.layout is defined and page is defined and page.extra.layout is defined and page.extra.layout == item.layout %}
-                    {% set is_current = true %}
-                  {% elif current_path == item.url %}
-                    {% set is_current = true %}
-                  {% endif %}
-                  <li class="col-lg-12 col-md-12 col-xs-12 {% if is_current %}current-menu-item{% endif %}"><a href="{{ linkurl }}" target="{{ target }}" hreflang="en"><i class="fa {{ item.icon }}"></i> {{ item.text }}</a></li>
-                {% endfor %}
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <div class="col-md-9 col-xs-12 full">
-          {% block content %}{% endblock content %}
-          <div class="row">
-            <div class="col-md-12 col-xs-12 footer">
-              <footer>
-                &copy; {{ now() | date(format="%Y") }} piurizza.com
-              </footer>
-            </div>
-          </div>
-        </div>
+      <div class="main-content full" id="main-content" tabindex="-1">
+        {% block content %}{% endblock content %}
+        <footer>
+          &copy; {{ now() | date(format="%Y") }} piurizza.com
+        </footer>
       </div>
     </div>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/material.min.js"></script>
+    <script src="/elasticlunr.min.js"></script>
+    <script src="/js/search.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

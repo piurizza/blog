@@ -1,19 +1,33 @@
+// Mobile nav toggle
+(function() {
+    var toggle = document.getElementById('nav-toggle');
+    var menu = document.getElementById('nav-menu');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', function() {
+        var expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !expanded);
+        menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden', expanded ? 'true' : 'false');
+    });
+})();
+
 // Back to top button
-var back_top_button = document.getElementById("backbtn");
+(function() {
+    var btn = document.getElementById('backbtn');
+    if (!btn) return;
 
-if (back_top_button) {
-    window.onscroll = function() {
-        if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-            back_top_button.style.display = "block";
-        } else {
-            back_top_button.style.display = "none";
-        }
-    };
-}
+    btn.hidden = false;
+    btn.style.display = 'none';
 
-function Scrollback_topfunc() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    window.addEventListener('scroll', function() {
+        btn.style.display = (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) ? 'block' : 'none';
+    });
+
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
 
 // Theme toggle
 (function() {
@@ -25,6 +39,7 @@ function Scrollback_topfunc() {
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
         toggle.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+        toggle.setAttribute('aria-pressed', isDark);
     }
 
     updateIcon();

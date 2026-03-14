@@ -3,19 +3,7 @@
 
 {% block page_title %}Blog{% endblock page_title %}
 
-{% block search %}
-<script src="/elasticlunr.min.js"></script>
-<script src="/js/search.js"></script>
-<form id="lunrsearchform" role="search">
-    <p>
-      <label for="lunrsearch" class="sr-only">Search posts</label>
-      <input type="text" class="form-control" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Search" autocomplete="off" />
-    </p>
-</form>
-<div id="lunrsearchresults">
-    <ul></ul>
-</div>
-{% endblock search %}
+{% block search %}{% endblock search %}
 
 {% block nav_layout %}post{% endblock nav_layout %}
 

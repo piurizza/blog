@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(~/.cargo/bin/just build:*)",
+      "Bash(export PATH=\"$HOME/.cargo/bin:$PATH\")",
+      "Bash(just clean:*)",
+      "Bash(just build:*)",
+      "Bash(git commit:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(just)",
+      "Bash(git branch:*)",
+      "Bash(git status:*)",
+      "Read(//home/piurizza/.cargo/bin/**)",
+      "Read(//home/piurizza/.local/bin/**)",
+      "Bash(just test:*)",
+      "Bash(git push:*)",
+      "Bash(~/.cargo/bin/zola build:*)",
+      "WebFetch(domain:127.0.0.1)",
+      "Bash(curl -s http://127.0.0.1:1025/)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

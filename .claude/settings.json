@@ -17,7 +17,11 @@
       "Bash(git push:*)",
       "Bash(~/.cargo/bin/zola build:*)",
       "WebFetch(domain:127.0.0.1)",
-      "Bash(curl -s http://127.0.0.1:1025/)"
+      "Bash(curl -s http://127.0.0.1:1025/)",
+      "Read(//home/piurizza/projects/**)",
+      "Read(//home/piurizza/**)",
+      "Bash(find /home/piurizza/projects/gazzetta-newsletter -maxdepth 2 -type f -not -path */.venv/* -not -path */__pycache__/*)",
+      "Bash(grep -E \"\\\\.\\(py|yaml|yml|json|txt|md\\)$\")"
     ],
     "additionalDirectories": [
       "/tmp"

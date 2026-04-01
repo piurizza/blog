@@ -27,6 +27,25 @@ Let's build something.
 </div>
 
 <div class="wrap-collabsible">
+  <input id="collapsible-gazzetta" class="toggle" type="checkbox">
+  <label for="collapsible-gazzetta" class="lbl-toggle">gazzetta-newsletter <em>(concorsi pubblici aggregator)</em></label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+      <p>An automated pipeline that aggregates Italian public contest listings from multiple official sources and delivers a filtered newsletter via email.</p>
+      <ul>
+        <li><strong>multi-source retrieval</strong> from official government feeds and APIs (e.g. Gazzetta Ufficiale, InPA)</li>
+        <li><strong>fuzzy keyword matching</strong> using Levenshtein distance to filter relevant contests across all sources</li>
+        <li><strong>domain-driven design</strong> with independent retriever packages, shared pipeline kernel, and dependency injection</li>
+        <li><strong>Gmail API integration</strong> for automated email delivery with results grouped by source</li>
+        <li><strong>CI pipeline</strong> running ruff, mypy, and pytest on every PR</li>
+      </ul>
+      <p>Built with Python 3.13, feedparser, requests, and marshmallow-dataclass.</p>
+      <p><a href="https://github.com/piurizza/gazzetta-newsletter">github.com/piurizza/gazzetta-newsletter</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap-collabsible">
   <input id="collapsible-gdaf" class="toggle" type="checkbox">
   <label for="collapsible-gdaf" class="lbl-toggle">gdaf <em>(geospatial data analysis framework)</em></label>
   <div class="collapsible-content">
